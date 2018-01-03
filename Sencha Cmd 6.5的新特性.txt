@@ -164,5 +164,3 @@ $ sencha config --prop sencha.sdk.path=~/sencha-sdks --save
 如果您收到与Cordova平台配置有关的任何错误，请手工创建一个名为cordova.local.properties的文件，如果该文件不存在的话。然后将下面的代码放在文件中并再次尝试构建:
 cordova.platforms=${app.cordova.config.platforms}
 注意:cordova.localproperties 文件应该放置在项目的根目录中。
-
-
