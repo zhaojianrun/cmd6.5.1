@@ -93,5 +93,139 @@
     
    这允许工具将自定义值附加到任何代码块并控制其动态变量。
     
-    动态变量的赋值只能发生在文件范围和任何控制结构之外。
+   动态变量的赋值只能发生在文件作用域内，并且在所有的控制结构外部。
     例如，这是非法的:
+    
+    $bar: dynamic(blue);
+    
+    @if something {
+        $bar: dynamic(red); // ILLEGAL
+    }
+    
+   实现上面想要的效果，可以这样写：
+    
+   $bar: dynamic(if(something, red, blue));
+   
+此需求对于启用下面讨论的评估和提升行为是必要的。
+
+动态变量在使用声明之后即可进行重新赋值，dynamic()可以用也可以不用。
+
+$bar: dynamic(blue);
+
+$bar: red;  // reassigns $bar to red
+
+$bar: green !default;  // reassigns $bar to green
+
+@debug $bar;  // green    
+
+没有“default dynamic”这样的东西。
+
+### 计算
+
+动态变量以依赖顺序进行运算，而不是声明顺序。
+声明单只适用于单个变量赋值的级联。
+这可以在上面的例子中看到。
+这个排序还意味着我们甚至可以删除$bar的第一个设置，而代码将具有相同的结果。
+
+考虑一个更复杂的例子:
+
+$bar: dynamic(mix($colorA, $colorB, 20%));
+
+$bar: dynamic(lighten($colorC, 20%));
+
+
+$bar的原始表达式使用$colorA和$colorB。
+如果这是唯一的被赋值到$bar的变量，那么$bar将依赖于这两个变量并在它们之后进行计算。
+由于$bar被重新赋值，并且随后只使用$colorC，在最终的分析中，$bar仅依赖$colorC。
+最初的赋值到$bar变量的行为可能从来没有发生过。
+
+### 动态变量调序
+    
+   为了完成所有这些，Fashion收集了所有动态变量，并在Sass代码的任何其他执行之前对它们进行运算。
+    换句话说，类似于JavaScript变量，动态变量被“吊”到顶部。
+    
+ ### 变量提升
+     
+   当使用变量来为动态变量赋值时，这些变量会被提升为动态变量。
+   
+   $foo: blue;
+   
+   $bar: dynamic($foo);
+   
+   虽然$foo被声明为一个普通变量，因为$bar使用$foo，Fashion会将$foo提升为动态的。
+   
+   注意:这意味着$foo现在必须遵循动态变量的规则。
+   
+   这种行为被支持是为了使以前版本的Sencha Cmd获得最大的可移植性。
+   当变量被提升时，会产生一个警告。
+   在将来的版本中，这个警告将会变成一个错误。
+   我们建议纠正这段代码，以正确地将所需的变量声明为dynamic()。
+   
+   ### 扩展——引用JavaScript
+      
+   您可以通过在JavaScript中编写代码来扩展Fashion。要从需要它的Sass代码中引用这段代码，使用require()。
+      例如:
+  
+   require("my-module");
+   
+   // or
+  
+   require("../path/file.js"); // relative to scss file
+   
+   在内部，Fashion使用ECMAScript 6(ES6)中的System.import API(或者通过SystemJS（https://github.com/systemjs/systemjs）的polyfill（https://github.com/ModuleLoader/es-module-loader）)来支持加载标准的JavaScript模块。
+   
+ 一个模块可以用pre-ES6的语法这样编写:
+ 
+     `exports.init = function(runtime) {
+         runtime.register({
+             magic: function (first, second) {
+                 // ...
+             }
+         });
+     };
+ `
+ 
+ 使用SystemJS，您可以让“transpilers”在任何浏览器中编写ES6代码。
+ 在ES6中，上面的代码是这样写的:
+ 
+      `module foo {
+          export function init (runtime) {
+              runtime.register({
+                  magic: function (first, second) {
+                      // ...
+                  }
+              });
+          }
+      }`
+ ## 升级
+   
+  ### 动态变量
+   
+   在升级到Ext JS 6时，动态变量的内部使用可能会影响这些变量在应用程序和定制主题中的赋值。
+   虽然不是必需的，但我们建议您更改变量赋值为dynamic()。
+   在大多数情况下，这将是机械地将！default(在以前的版本中采用的方法)替换为dynamic():
+   
+       `// before:
+       
+       $base-color: green !default;
+       
+       // after:
+       
+       $base-color: dynamic(green);`
+   分配给动态变量的更严格的语法生成的错误，将更容易分析识别。
+   
+   ### Compass的扩展
+       
+   使用Ruby代码的Compass功能将不可用，因为Ruby不再被使用。
+   具有相同功能的模块将使用JavaScript创建。
+   在很多情况下，都可以使用require()在JavaScript中实现缺失的功能。
+   然而，Compass中的Sass代码包含在Fashion中，因此并不是所有的Compass功能都受到了影响。
+   一般来说，如果您没有使用任何定制或基于Ruby的Compass功能，那么您很可能不需要做任何更改。
+   
+   ## 结论
+     
+ 我们对Fashion的功能感到充满激情，希望你也是！
+ 快速地为你的应用程序定制样式从来都没有像现在这样容易，而扩展Sass现在可以用与框架一样的语言来完成。
+ 请务必在论坛（https://www.sencha.com/forum/forumdisplay.php?8-Sencha-Cmd）上留下任何反馈。
+   
+   
