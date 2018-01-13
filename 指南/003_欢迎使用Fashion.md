@@ -11,18 +11,18 @@
    Sencha Cmd 6在为Ext JS 6应用程序编译主题时也使用了Fashion。
    因为时尚是用JavaScript实现的，所以不再需要Ruby了。
    
-  ## Fashion是什么?
+## Fashion是什么?
    
   Fashion是一个编译器，用于将 .scss文件生成CSS。
    时尚还添加了一些在Sass中不能用的新功能，允许像Sencha Inspector等工具一样对主题(或您的应用程序)定义的变量进行视觉检查和编辑。
    
-  ### JavaScript扩展
+### JavaScript扩展
    
    用户可以通过编写JavaScript模块来扩展Fashion的功能。   一般来说，Ext JS用户可能最熟悉JavaScript，因此扩展Fashion应该比扩展Compass简单得多。
    下面我们将进一步讨论如何扩展Fashion。
    
    
-  ### 兼容性
+### 兼容性
    
    Fashion与CSS3语法以及大多数sass-spec（https://github.com/sass/sass-spec）验证套件兼容。
    因为Fashion确实实现了Sass的大部分代码，所以才使得使用Fashion来编译scss代码并不难。
@@ -31,7 +31,7 @@
    在很多地方，“sass”这个词被用来作为配置选项或磁盘上的文件夹的名称。
    出于兼容性的考虑，这些配置选项仍然被命名为“sass”，尽管配置项下的语言并不是严格意义上的“sass”。
     
-   ## 使用实时更新
+## 使用实时更新
    您可以在(现代)浏览器中打开应用程序，而Sass文件将被加载，而不是生成的CSS。
    然后，Fashion可以对文件修改做出反应，重新编译Sass，并在不重新加载页面的情况下更新CSS。 
    在sencha app watch命令中，有两种方式可启用Fashion。
@@ -143,8 +143,8 @@ $bar的原始表达式使用$colorA和$colorB。
     
    为了完成所有这些，Fashion收集了所有动态变量，并在Sass代码的任何其他执行之前对它们进行运算。
     换句话说，类似于JavaScript变量，动态变量被“吊”到顶部。
-    
- ### 变量提升
+   
+### 变量提升
      
    当使用变量来为动态变量赋值时，这些变量会被提升为动态变量。
    
@@ -161,7 +161,7 @@ $bar的原始表达式使用$colorA和$colorB。
    在将来的版本中，这个警告将会变成一个错误。
    我们建议纠正这段代码，以正确地将所需的变量声明为dynamic()。
    
-   ### 扩展——引用JavaScript
+### 扩展——引用JavaScript
       
    您可以通过在JavaScript中编写代码来扩展Fashion。要从需要它的Sass代码中引用这段代码，使用require()。
       例如:
@@ -197,13 +197,13 @@ $bar的原始表达式使用$colorA和$colorB。
               });
           }
       }`
- ## 升级
+## 升级
    
-  ### 动态变量
+### 动态变量
    
    在升级到Ext JS 6时，动态变量的内部使用可能会影响这些变量在应用程序和定制主题中的赋值。
    虽然不是必需的，但我们建议您更改变量赋值为dynamic()。
-   在大多数情况下，这将是机械地将！default(在以前的版本中采用的方法)替换为dynamic():
+   在大多数情况下，这00将是机械地将！default(在以前的版本中采用的方法)替换为dynamic():
    
        `// before:
        
@@ -214,7 +214,7 @@ $bar的原始表达式使用$colorA和$colorB。
        $base-color: dynamic(green);`
    分配给动态变量的更严格的语法生成的错误，将更容易分析识别。
    
-   ### Compass的扩展
+### Compass的扩展
        
    使用Ruby代码的Compass功能将不可用，因为Ruby不再被使用。
    具有相同功能的模块将使用JavaScript创建。
@@ -222,7 +222,7 @@ $bar的原始表达式使用$colorA和$colorB。
    然而，Compass中的Sass代码包含在Fashion中，因此并不是所有的Compass功能都受到了影响。
    一般来说，如果您没有使用任何定制或基于Ruby的Compass功能，那么您很可能不需要做任何更改。
    
-   ## 结论
+## 结论
      
  我们对Fashion的功能感到充满激情，希望你也是！
  快速地为你的应用程序定制样式从来都没有像现在这样容易，而扩展Sass现在可以用与框架一样的语言来完成。
