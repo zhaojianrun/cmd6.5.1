@@ -1,4 +1,4 @@
-#Sencha Cmd 5升级指南
+# Sencha Cmd 5升级指南
 
 本指南旨在帮助开发人员使用Sencha Cmd从ExtJS 4.1.1 a+升级到ExtJS 5.0.x。
 尽管在这个版本中有一些重要的变化，但是我们已经尝试使升级过程尽可能的没有痛苦。
@@ -236,5 +236,6 @@ Sencha Cmd所产生的新项目不再使用“cordova.local.properties”或“p
 ## 更多的信息
 
 有关升级过程的更多信息，请查看以下指南:
+
 - [Charts - Upgrade Guide](file:///E:/Software/cmd-651-docs/cmd/extjs/5.0/whats_new/5.0/charts_upgrade_guide.html)
 - [Ext JS 5 - Upgrade Guide](file:///E:/Software/cmd-651-docs/cmd/extjs/5.0/whats_new/5.0/extjs_upgrade_guide.html)
