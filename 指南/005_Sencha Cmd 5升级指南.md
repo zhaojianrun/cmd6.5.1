@@ -216,15 +216,25 @@ Sencha Cmd所产生的新项目不再使用“cordova.local.properties”或“p
 
 ### 总结
 
-这就是它!
-您的应用程序升级到最新的Ext JS和Sencha Cmd。
-在测试完之后，您可以提交更改(其中很多都在“。”
-sencha”文件夹)。
+就这样!您的应用程序升级到最新的Ext JS和Sencha Cmd。
+在测试完之后，您可以提交更改(其中很多都在“.sencha”文件夹)。
 
-其他的笔记
+## 其他注意事项
 
-日志输出
+### 日志输出
 
 如果你对Sencha Cmd很熟悉，你可能会注意到，Sencha Cmd的控制台输出已经显著减少了。
 如果您更喜欢原始的日志记录级别，您可以通过向您的命令添加-info来重新启用它。
 例如:
+
+`sencha -info app watch`
+
+如果你想要更少的日志输出，你可以用-quiet参数来运行命令:
+
+`sencha -quiet app watch`
+
+## 更多的信息
+
+有关升级过程的更多信息，请查看以下指南:
+- [Charts - Upgrade Guide](file:///E:/Software/cmd-651-docs/cmd/extjs/5.0/whats_new/5.0/charts_upgrade_guide.html)
+- [Ext JS 5 - Upgrade Guide](file:///E:/Software/cmd-651-docs/cmd/extjs/5.0/whats_new/5.0/extjs_upgrade_guide.html)
