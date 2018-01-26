@@ -21,29 +21,45 @@ Sencha Cmd提供以下功能:
 - Cordova/PhoneGap整合:原生打包将web应用程序转化为一种一流的移动应用程序，可以访问设备功能，
 并可以在应用程序商店（App Stores）中分发。
 - 图像捕捉:将CSS3特性(如border-rasius和线性渐变(linear-gradient))转换为遗留浏览器的精灵。
-- 调优工具:强大的代码选择工具，用于对应用程序的最终构建中包含的内容进行调优，
-根据是页面间的通用代码和分区共享代码，使用高级设置操作来根据您的需要准确地获得构建。
-灵活的配置系统:允许在应用程序或工作区级或机器上的所有工作空间中指定默认值。
-日志记录:健壮的日志记录，以帮助您了解命令的内部工作原理，并有助于进行故障排除。
-第三方软件:Sencha Touch和Ext JS 5和更老的，Sencha Cmd包含了一个兼容的指南针和Sass。
-代码生成钩子:可以特定于一个页面，或者在工作空间中的所有页面共享，例如，在生成新模型时检查编码约定或指导方针。
-兼容性
+- 调优工具:强大的代码选择工具，用于根据页面间的通用代码和分区共享代码对应用程序的最终构建中包含的内容进行调优，
+使用高级设置操作来根据您的需要准确地获得构建。
+- 灵活的配置系统:为应用程序或工作区级或机器上的所有工作空间指定默认命令选项值。
+- 日志记录:健壮的日志记录，以帮助您了解命令的内部工作原理，并有助于进行故障排除。
+- 第三方软件:Sencha Touch和Ext JS 5以及更老的版本，Sencha Cmd包含了一个兼容的Compass和Sass的版本。
+- 代码生成钩子:可以特定于一个页面，或者在工作空间中的所有页面共享，例如，在生成新模型时检查编码约定或规范。
+## 兼容性
 
-Sencha Cmd支持Sencha Ext JS版本4.1.1或更高版本，而Sencha Touch版本2.1或更高。
-Sencha Cmd的许多特性都需要框架支持，只有在这些或以后版本级别才可用。
-一些低级命令可以用于较老版本的Sencha框架或JavaScript。
+Sencha Cmd支持Sencha Ext JS版本4.1.1或更高版本与Sencha Touch版本2.1或更高。
+Sencha Cmd的许多特性都需要框架支持，只有在当前版本或更新版本才可用。
+一般来说，一些低级命令可以用于较老版本的Sencha框架或JavaScript。
 
 如果你使用的是旧版本的Ext JS，你可以使用Sencha Cmd的构建命令来构建你的JSB文件。
-换句话说，Sencha Cmd可以替换JSBuilder，以生成JSB文件中描述的文件的压缩构建。
+换句话说，Sencha Cmd可以代替JSBuilder，生成JSB文件中描述的压缩构建。
 Sencha Cmd不会更新您的JSB文件，就像被弃用的SDK工具v2所做的那样。
 
 Sencha Touch 2.0和Sencha Ext JS 4.0要求已弃用的SDK工具v2，它不能用于以后的触摸或Ext JS版本。
 
-系统设置
+## 系统设置
 
-Sencha Cmd 6安装程序包含了构建Ext JS 6应用程序所需的所有软件，所以只需下载Sencha Cmd:
+Sencha Cmd 6安装程序包含了构建Ext JS 6应用程序所需的所有软件，所以只需下载Sencha Cmd即可:
 
-Sencha Cmd
-使用旧框架
+- [Sencha Cmd](http://www.sencha.com/products/sencha-cmd/)
+### 使用旧框架
 
-如果你使用的是较老版本的Ext JS或Sencha Touch，你需要在安装程序中检查“Compass扩展”选项:
+如果你使用的是较老版本的Ext JS或Sencha Touch，你需要在安装程序中选中“Compass扩展”选项:
+
+![image](file:///E:/Software/cmd-651-docs/cmd/6.5.1/guides/images/whats_new_cmd_compass.png)
+
+你还需要安装Ruby来编译使用Sass的主题和应用程序。
+Ruby根据不同操作系统安装不同版本:
+
+Windows:从rubyinstall er.org下载Ruby。
+”。
+"exe"文件版本的软件并安装它。
+Mac OS:Ruby是预先安装的。
+您可以测试Ruby是否安装了Ruby-v命令。
+Ubuntu:使用sudo-get安装ruby2.0.0来下载Ruby。
+如果你将使用Cordova或PhoneGap，你可能会对这些工具有其他要求。
+参见与Cordova或PhoneGap的集成。
+
+安装程序将在PATH环境变量中添加一个条目。
