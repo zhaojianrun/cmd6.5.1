@@ -48,18 +48,17 @@ Sencha Cmd 6安装程序包含了构建Ext JS 6应用程序所需的所有软件
 
 如果你使用的是较老版本的Ext JS或Sencha Touch，你需要在安装程序中选中“Compass扩展”选项:
 
-![image](file:///E:/Software/cmd-651-docs/cmd/6.5.1/guides/images/whats_new_cmd_compass.png)
+![image](http://vcl-pictures.qiniudn.com/o_1c57u4hm1ali241fm91nsd5bnc.png)
 
 你还需要安装Ruby来编译使用Sass的主题和应用程序。
 Ruby根据不同操作系统安装不同版本:
 
-Windows:从rubyinstall er.org下载Ruby。
-”。
-"exe"文件版本的软件并安装它。
-Mac OS:Ruby是预先安装的。
-您可以测试Ruby是否安装了Ruby-v命令。
-Ubuntu:使用sudo-get安装ruby2.0.0来下载Ruby。
-如果你将使用Cordova或PhoneGap，你可能会对这些工具有其他要求。
-参见与Cordova或PhoneGap的集成。
+- Windows:从rubyinstaller.org下载Ruby。获取".exe"文件并安装它。
+- Mac OS:Ruby是预先安装的。您可以使用Ruby-v命令来测试是否安装了Ruby。
+- Ubuntu:使用sudo-get install ruby2.0.0来下载Ruby。
+如果你将使用Cordova或PhoneGap，可能会对这些工具有其他要求。
+参见[与Cordova或PhoneGap的集成](#)。
 
-安装程序将在PATH环境变量中添加一个条目。
+安装程序将在PATH环境变量中添加一条路径。
+
+###
