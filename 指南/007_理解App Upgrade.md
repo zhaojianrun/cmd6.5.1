@@ -93,3 +93,38 @@
  
  对于[p4merge](http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools)，你可以设置如下属性:
  
+     cmd.merge.tool=p4merge
+     cmd.merge.tool.args=${cmd.merge.tool.args.p4merge}
+
+如上的配置是假设“p4merge”在您的`PATH`环境变量中。
+如果没有，您将需要指定可执行文件的全路径。
+
+对于[SourceGear](http://www.sourcegear.com/diffmerge/index.html):
+
+    cmd.merge.tool.args=${cmd.merge.tool.args.sourcegear}
+对于[kdiff3](http://sourceforge.net/projects/kdiff3/files/kdiff3/):
+  
+    cmd.merge.tool.args=${cmd.merge.tool.args.kdiff3}
+对于[Syntevo SmartSynchronize 3](http://www.syntevo.com/smartsynchronize/index.html):
+ 
+    cmd.merge.tool.args=${cmd.merge.tool.args.smartsync}
+对于[TortoiseMerge](http://tortoisesvn.net/) (TortoiseSVN的一部分):
+    
+    cmd.merge.tool.args=${cmd.merge.tool.args.tortoise}
+对于[AraxisMerge](http://www.araxis.com/merge-overview.html):
+
+    cmd.merge.tool.args=${cmd.merge.tool.args.araxis}
+## 选择策略
+   
+   如果您已经对应用程序进行了大量定制，那么在临时位置生成一个新应用程序，并通过复制它的“.sencha”文件夹文件夹取代你自己的文件夹就更容易了。
+   ，小心地调整你可能做出的任何改动，并将它们合并到新版本中。
+   
+   如果您使用的是工作空间，那么您可能需要复制“.sencha/workspace”。
+   从生成的应用到你的工作空间的“.sencha”文件夹替换掉旧版本。
+   
+## 接下来的阅读章节
+   
+- [Compiler-Friendly Code Guidelines](http://docs.sencha.com/cmd/guides/cmd_compiler.html)
+- [Sencha Cmd Packages](http://docs.sencha.com/cmd/guides/cmd_packages/cmd_packages.html)
+- [Workspaces in Sencha Cmd](http://docs.sencha.com/cmd/guides/workspaces.html)
+- [Advanced Sencha Cmd ](http://docs.sencha.com/cmd/guides/advanced_cmd/cmd_advanced.html)  
