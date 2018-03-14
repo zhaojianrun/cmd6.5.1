@@ -79,4 +79,113 @@ Sencha Cmd将负责所有重复的任务，例如构建应用程序，将其放�
 Xcode只在安装有Linon，Mountain Lion或者Mavericks OS X上的Mac上能正常运行。
   
 ### config.xml
+当你创建PhoneGap或Cordova应用程序时，它们都会为您的项目创建一个`config.xml`文件。
+
+Cordova的`config.xml`文件存储在您的“app_root/cordova”文件夹中，而PhoneGap的`config.xml`文件存储在"app_root/cordova/www"文件夹中。
+这是一个问题，因为`www`文件夹是编译构建的目标文件夹。
+很有可能这个www文件夹会被删除并进而删除`config.xml`文件。
+
+为了在Sencha Cmd中解决这个问题，当创建PhoneGap应用程序时,我们复config.xml文件到PhoneGap项目的根目录。
+每次进行构建时，我们都会将配置文件和编译后的应用程序复制到www文件夹。
+这意味着不管您使用哪个框架，用户都可以预期config.xml文件位于Cordova或PhoneGap文件夹的根目录。
+
+有关配置PhoneGap和Cordova的更多信息，请查看以下参考资料：
+
+- [PhoneGap example config.xml file](https://github.com/phonegap/phonegap-start/blob/master/www/config.xml)
+- [Configuration Reference](http://docs.phonegap.com/en/3.0.0/config_ref_index.md.html#Configuration%20Reference)
+## 开发一个Cordova应用程序
+  使用如下Cmd的generate命令创建您的应用程序：
   
+	`sencha -sdk /path/to/Framework generate app MyApp /path/to/MyApp`
+	
+在开发一个Ext 6+通用应用程序时，生成的应用程序的`app.json`文件中包含一个`builds`块。
+当您的应用程序已经包含一个`builds`块时，`sencha phonegap/cordova init`命令将不能添加修改到您的app.json文件中。
+要添加Cordova支持，请修改您的app.json中的builds块如下：	
+
+  "builds": {
+    "classic": {
+      "toolkit": "classic",
+      "theme": "theme-triton"
+    },
+  
+    "modern": {
+      "toolkit": "modern",
+      "theme": "theme-cupertino",
+      "packager": "cordova",
+      "cordova": {
+        "config": {
+          "platforms": "ios",
+          "id": "com.mydomain.MyApp"
+        }
+      }
+    }
+  }  
+  
+导航到新生成的项目文件夹，并运行下列命令之一（APP_ID和APP_NAME参数可选）。
+
+`sencha phonegap init com.mycompany.MyApp MyApp`
+
+或者
+
+`sencha cordova init com.mycompany.MyApp MyApp`
+
+在上述命令完成之后，您现在应该在项目文件夹中看到phonegap或cordova目录。
+
+您还会在项目的app.json文件中看到PhoneGap或Cordova的一个块。
+`app.json`位于项目的根目录中。
+在这里，您可以设置您要构建的平台（ios或者安卓）。
+
+类似于下面的构建对象现在应该出现在您的app.json文件中。
+
+    "builds": {
+      "native": {
+        "packager": "cordova",
+        "cordova" : {
+          "config": {
+              "platforms": "ios"
+              "id": "com.mydomain.MyApp"
+          }
+        }
+      }
+    }
+    
+让我们来讨论一下上面的代码片段。
+
+### 构建名称
+值得注意的是，“native”这个词仅仅是你的构建的名字，它可以是你喜欢的任何单词。
+构建名称必须是单个字符串，只能包含没有空格的字母数字字符。
+例如，你可以使用类似“ios”、“android”、“iphone”、“ipad”等的构建名称。
+
+注意：虽然您可以为构建名称选择任何东西，但是名称“production”、“testing”和“development”都是为Sencha Cmd保留的，不应该在这个上下文中使用。
+
+### （platforms)平台
+然后，您可以将平台对象设置为任何平台或平台的组合。
+对于Cordova，你可以指定一个空格分隔的列表，例如“ios android”。
+
+### ID
+当第一次生成Cordova应用程序时，将使用“id”属性。
+这是应用程序的标识符。
+也就是说，你要确保你正确地选择了这个属性。
+如果您需要更改它，您将需要从您的项目中删除Cordova文件夹，并在更改了ID属性之后让Cmd重新生成它。
+这对于iOS应用程序尤其重要，因为它必须匹配您的Bundle标识符。
+
+从终端或命令行运行以下命令：
+
+`sencha app build {build-name}` 
+
+在这里{build-name}是你的app.json中build对象里定义的构建名称之一。
+例如，如果你的构建名称为“android”，命令将是：      
+
+`sencha app build android`
+
+就是这样!
+Sencha Cmd现在将创建一个Cordova应用程序，并通过app.json中的platforms属性来构建您指定的平台。
+
+## Sencha Cordova命令
+   您可以使用Cordova和这个新的构建对象来使用4个命令。
+### Build
+`sencha app build {build-name}`
+
+“build”将构建您的Sencha应用程序，然后构建一个原生应用程序。  
+### Run
+ 
