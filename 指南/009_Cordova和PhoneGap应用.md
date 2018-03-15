@@ -188,4 +188,32 @@ Sencha Cmd现在将创建一个Cordova应用程序，并通过app.json中的plat
 
 “build”将构建您的Sencha应用程序，然后构建一个原生应用程序。  
 ### Run
- 
+`sencha app run {build-name}`
+“run”将构建您的Sencha应用程序和您的原生应用程序。
+然后它会尝试在一个连接的设备上运行该应用。
+### Emulate
+`sencha app emulate {build-name}`
+“emulate”将构建您的Sencha应用程序和您的原生应用程序。
+然后，它将尝试在模拟器中运行它。
+### Prepare
+`sencha app prepare {build-name}`
+“prepare”将构建您的Sencha应用程序，然后将构建的应用程序准备到原生应用程序中，然而，它不会构建原生部分。
+如果您需要在sencha编译后，原生构建之前向应用程序注入一些东西，这是很好的选择。
+
+## 开发一个PhoneGap应用
+PhoneGap与Cordova非常相似。
+事实上，如果您不是通过PhoneGap云服务来构建的话，这个过程几乎是一样的。
+
+下面是app.json的一个片段，它将提供与上面的Cordova项目相同的PhoneGap项目。
+
+    "builds": {
+      "native": {
+        "packager": "phonegap",
+        "phonegap" : {
+          "config": {
+              "platform": "ios",
+              "id": "com.mydomain.MyApp"
+          }
+        }
+      }
+    }
