@@ -217,3 +217,20 @@ PhoneGap与Cordova非常相似。
         }
       }
     }
+正如您所看到的，从本地转换到远程构建非常简单。
+您所需要做的就是将remote标志添加到您的app.json中的build块中。
+
+下一步是提供您的用户名和密码，以便Sencha Cmd能够自动将您登录到PhoneGap远程服务器并上传您的项目。
+
+为此，我们建议添加一个`local.properties`文件到应用程序的根目录。
+出于安全考虑，该属性文件应该被所有形式的版本控制软件所忽略。
+
+向该文件添加以下行：
+
+    phonegap.username=myname@domain.com
+    phonegap.password=s3nch@isgr3@t
+
+一旦配置好用户名和密码，发送一个构建任务就很简单了。
+只要运行`sencha app build native`，你的应用程序就会被编译并发送到云端，让Adobe生成你的原生应用。
+
+构建完成之后，您可以通过PhoneGap门户访问最终包文件，以便在设备上进行测试，或者将其上传至应用程序商店。    
